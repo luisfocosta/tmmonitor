@@ -1,6 +1,6 @@
 {
     "name": "tmmonitor",
-    "description": "A Node-RED Project",
+    "description": "A Pataphysical Node-RED Project",
     "version": "0.0.1",
     "dependencies": {},
     "node-red": {

@@ -1,0 +1,430 @@
+[
+    {
+        "id": "2477529e93aab871",
+        "type": "tab",
+        "label": "TM Monitor",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4bdf5cb4f16f4ce4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.200.100",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1e2a75365afd81e4",
+        "type": "mqtt in",
+        "z": "2477529e93aab871",
+        "name": "",
+        "topic": "videoplayer/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4bdf5cb4f16f4ce4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "4cfd5172451f2adc"
+            ]
+        ]
+    },
+    {
+        "id": "dfada9e3242105d9",
+        "type": "debug",
+        "z": "2477529e93aab871",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "28c67052.c4e9",
+        "type": "link out",
+        "z": "2477529e93aab871",
+        "name": "",
+        "links": [
+            "e7ac4ebe.4b096"
+        ],
+        "x": 255,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "7a749c18.6a0fe4",
+        "type": "inject",
+        "z": "2477529e93aab871",
+        "name": "Pause video",
+        "props": [
+            {
+                "p": "payload",
+                "v": "echo -n p >/tmp/cmd",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "echo -n p >/tmp/cmd",
+        "payloadType": "str",
+        "x": 110,
+        "y": 500,
+        "wires": [
+            [
+                "28c67052.c4e9"
+            ]
+        ]
+    },
+    {
+        "id": "963fe078.bd12d",
+        "type": "inject",
+        "z": "2477529e93aab871",
+        "name": "Stop video",
+        "props": [
+            {
+                "p": "payload",
+                "v": "/home/pi/scripts/stop_omxplayer.sh",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "/home/pi/scripts/stop_omxplayer.sh",
+        "payloadType": "str",
+        "x": 100,
+        "y": 460,
+        "wires": [
+            [
+                "28c67052.c4e9"
+            ]
+        ]
+    },
+    {
+        "id": "42acfb52.168354",
+        "type": "exec",
+        "z": "2477529e93aab871",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "omxplayer",
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "9c13f3d5d2b178a0"
+            ],
+            [
+                "4c04b594a1997ceb"
+            ],
+            [
+                "4c04b594a1997ceb"
+            ]
+        ]
+    },
+    {
+        "id": "9c13f3d5d2b178a0",
+        "type": "debug",
+        "z": "2477529e93aab871",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4c04b594a1997ceb",
+        "type": "debug",
+        "z": "2477529e93aab871",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c46717873b4b75eb",
+        "type": "inject",
+        "z": "2477529e93aab871",
+        "name": "Test shell",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ls -lisart /home/pi",
+        "payloadType": "str",
+        "x": 100,
+        "y": 540,
+        "wires": [
+            [
+                "28c67052.c4e9"
+            ]
+        ]
+    },
+    {
+        "id": "bc8d3c822f351f36",
+        "type": "inject",
+        "z": "2477529e93aab871",
+        "name": "Pause video",
+        "props": [
+            {
+                "p": "payload.action",
+                "v": "pause",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "videoplayer",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "4b5617df596caab7",
+                "9b713ac2857dc98a"
+            ]
+        ]
+    },
+    {
+        "id": "44b004c846c44748",
+        "type": "inject",
+        "z": "2477529e93aab871",
+        "name": "Stop video",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload.action",
+                "v": "stop",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "videoplayer",
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "4b5617df596caab7",
+                "9b713ac2857dc98a"
+            ]
+        ]
+    },
+    {
+        "id": "4b5617df596caab7",
+        "type": "mqtt out",
+        "z": "2477529e93aab871",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "4bdf5cb4f16f4ce4",
+        "x": 310,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9b713ac2857dc98a",
+        "type": "debug",
+        "z": "2477529e93aab871",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1e0287c3b322a2b7",
+        "type": "comment",
+        "z": "2477529e93aab871",
+        "name": "OS commands tests",
+        "info": "",
+        "x": 130,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "4cfd5172451f2adc",
+        "type": "function",
+        "z": "2477529e93aab871",
+        "name": "case action",
+        "func": "var msg2 = {};\nswitch (msg.payload.action) {\n    case \"play\": {\n        msg2.payload = \"/home/pi/scripts/stop_omxplayer.sh\";\n        msg2.comment = \"Stop any video playing.\";\n        node.send(msg2);\n        //Load the requested video on omxplayer\n        //node.warn ({Text: \"Playing video \" + msg.video});\n        msg2.payload = \"/usr/bin/omxplayer -b \" + msg.payload.video;\n        msg2.comment = \"Load video in omxplayer.\";\n        node.send(msg2);\n        //Play the requested video on omxplayer\n        msg2.payload = \"echo -n . >/tmp/cmd\";\n        msg2.comment = \"Play video loaded.\";\n        node.send(msg2);\n        global.set(\"lastplaytimestamp\", msg.payload.timestamp);\n\n        break;\n    }\n    case \"stop\":{\n        msg2.payload = \"pkill mxplayer\";\n        msg2.comment = \"Stop any video playing.\";\n        node.send(msg2);\n        break;\n    }\n    case \"pause\": {\n        msg2.payload = \"echo -n p >/tmp/cmd\";\n        msg2.comment = \"Pause video.\";\n        node.send(msg2);\n        break;\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "42acfb52.168354",
+                "dfada9e3242105d9"
+            ]
+        ]
+    },
+    {
+        "id": "c2f9472df00d618f",
+        "type": "inject",
+        "z": "2477529e93aab871",
+        "name": "Play video",
+        "props": [
+            {
+                "p": "payload.action",
+                "v": "play",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload.video",
+                "v": "Merger.mov",
+                "vt": "str"
+            },
+            {
+                "p": "payload.timestamp",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "videoplayer",
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "4b5617df596caab7",
+                "9b713ac2857dc98a"
+            ]
+        ]
+    },
+    {
+        "id": "21bfc78ff19626e8",
+        "type": "comment",
+        "z": "2477529e93aab871",
+        "name": "Video player test simulation",
+        "info": "",
+        "x": 160,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "98925ab8a3d4ecb3",
+        "type": "comment",
+        "z": "2477529e93aab871",
+        "name": "192.168.200.128",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    }
+]
